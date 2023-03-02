@@ -6,8 +6,8 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.108.0">
-    <title>About</title>
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/checkout/">
+    <title>FRAME-HUNT/About</title>
+    <!-- <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/checkout/"> -->
     <link href="css/about.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" 
@@ -16,27 +16,26 @@
   </head>
   <body >
     <nav>
-        <div class="navbar fixed-top navbar-expand-md  text-bg-secondary ">
-            <a href="#" class="navbar-brand fs-3 ms-3 text-white">FRAME-HUNT</a>
-            <button class="navbar-toggler me-3 text-black " type="button" data-bs-toggle="collapse" data-bs-target="#btn"><i class="bi bi-menu-button-wide-fill"></i></i></button>
-           <div class="collapse navbar-collapse" id="btn">
-               <ul class="navbar-nav ms-auto">
-                  <li class="nav-item">
-                     <a href="index.html" class="nav-link mx-3 text-white fs-5 ">HOME</a>   
-                  </li>
-                  <li class="nav-item">
-                      <a href="explore.html" class="nav-link mx-3 text-white fs-5">EXPLORE</a>   
-                  </li>
-                  <li class="nav-item">
-                      <a href="#" class="nav-link mx-3 text-white fs-5">ABOUT</a>   
-                  </li>
-               </ul>
-            </div>
-         </div>
-       </nav>
-    
+      <div class="navbar fixed-top navbar-expand-md bg-body-secondary">
+          <a href="index.html" class="navbar-brand fs-3 ms-3 text-white">FRAME-HUNT</a>
+          <button class="navbar-toggler me-3 text-black " type="button" data-bs-toggle="collapse" data-bs-target="#btna"><i class="bi bi-menu-button-wide-fill"></i></i></button>
+         <div class="collapse navbar-collapse" id="btna">
+             <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                   <a href="index.html" class="nav-link mx-3 text-white fs-5 ">HOME</a>   
+                </li>
+                <li class="nav-item">
+                    <a href="explore.html" class="nav-link mx-3 text-white fs-5">EXPLORE</a>   
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link mx-3 text-white fs-5">ABOUT</a>   
+                </li>
+             </ul>
+          </div>
+       </div>
+     </nav>
 <div class="container">
-  <main>
+ 
     <br>
     <div class="py-5 text-center">
       <h2>About & Contact </h2>
@@ -80,74 +79,46 @@
           </li>
           
         </ul>
-
-        
       </div>
-      <div class="col-md-7 col-lg-8">
-        <h4 class="mb-3"></h4>
-        <form class="needs-validation" novalidate>
-          <div class="row g-3">
-            <div class="col-sm-6">
-              <label for="firstName" class="form-label">First name</label>
-              <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
-              <div class="invalid-feedback">
-                Valid first name is required.
-              </div>
-            </div>
-
-            <div class="col-sm-6">
-              <label for="lastName" class="form-label">Last name</label>
-              <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
-              <div class="invalid-feedback">
-                Valid last name is required.
-              </div>
-            </div>
-
-            <div class="col-12">
-              <label for="username" class="form-label">Username</label>
-              <div class="input-group has-validation">
-                <span class="input-group-text">@</span>
-                <input type="text" class="form-control" id="username" placeholder="Username" required>
-              <div class="invalid-feedback">
-                  Your username is required.
-                </div>
-              </div>
-            </div>
-
-            <div class="col-12">
-              <label for="email" class="form-label">Email <span class="text-muted"></span></label>
-              <input type="email" class="form-control" id="email" placeholder="you@example.com">
-              <div class="invalid-feedback">
-                Please enter a valid email address 
-              </div>
-            </div>
-
-
-          <hr class="my-4">
-
-          <button class="w-100 btn btn-outline-dark btn-lg" type="submit">Submit</button>
-
-
-          <hr class="my-4">
-
-          <h4 class="mb-3">Subscribe to our newsletter</h4>
-
-          
-          <div class="col-12">
-            <label for="email" class="form-label">Email <span class="text-muted"></span></label>
-            <input type="email" class="form-control" id="email" placeholder="you@example.com">
-            <div class="invalid-feedback">
-              Please enter a valid email address 
-            </div>
-          </div>
-
-          <hr class="my-4">
-
-          <button class="w-100 btn btn-dark btn-lg" type="submit">Submit</button>
-        </form>
-      </div>
+      <form class="m-2" onsubmit=" return handleSubmit()">
+        <div id="message" class="alert alert-danger text-center" style="display: none;">ENTER YOUR NAME</div>
+     <div class="row g-3">
+      <div class="col-sm-6 col-12">
+      <label  for="name" class="form-label">First Name</label>
+      <input type="text" class="form-control" id="name" aria-describedby="emailHelp">
+    </div>     
+    <div class="col-sm-6 col-12">
+      <label  for="lname" class="form-label">Last Name</label>
+      <input type="text" class="form-control" id="lname" aria-describedby="emailHelp">
     </div>
-  </main>
+    <div class="col-sm-6">
+      <label for="email" class="form-label">Email address</label>
+      <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+    </div>
+    <div class="col-sm-6">
+      <label for="password" class="form-label">Username</label>
+      <input type="text" class="form-control" id="password">
+    </div>
+    <button class="w-100 btn btn-outline-dark btn-lg" type="submit">Submit</button>
+  </div>
+  <hr class="my-4">
+
+  </form>
+  <form onsubmit="return lastSub()">
+    <div id="messages" class="alert alert-danger text-center"style="display: none;">ENTER YOUR NAME</div>
+  <h4 class="mb-3">Subscribe to our newsletter</h4>
+
+  
+  <div class="col-12">
+    <label for="emails" class="form-label">Email <span class="text-muted"></span></label>
+    <input type="email" class="form-control" id="emails">
+    
+    <hr class="my-4">
+    <button class="w-100 btn btn-outline-dark btn-lg" type="submit">Submit</button>
+  </div>
+  </form>
+    </div>
+  
 
   <footer class="my-5 pt-5 text-muted text-center text-small">
     <p class="mb-1">&copy; 2023 Frame-Hunt</p>
@@ -159,12 +130,59 @@
   </footer>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" 
+integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
-    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 
-      <script src="checkout.js"></script>
-  </body>
-</html>
+      <script type="text/javascript">
+        function handleSubmit(){
+         const message = document.getElementById('message')
+         const name= document.getElementById('name').value
+         const lname= document.getElementById('lname').value
+         const email = document.getElementById('email').value
+         const password= document.getElementById('password').value
+         const emails= document.getElementById('emails').value
+       
+         message.style.display="none"
+         
+           if(name.length == 0){
+              message.innerText ="Enter your name"
+              message.style.display = "block";
+              return false;
+           }
+           if(lname.length == 0){
+              message.innerText ="Enter your last name"
+              message.style.display = "block";
+              return false;
+           }
 
+           if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)==false){
+             message.innerText ="Enter the corect email "
+              message.style.display = "block";
+              return false;
+           }
+           
+           if(password.length < 5){
+             message.innerText ="Username  must be more than 5 word"
+              message.style.display = "block";
+              return false;
+           }
+           
+           
+           alert('Welcome to frame-hunt');
+           return true;
+        }
+        function lastSub(){
+          const messages = document.getElementById('messages')
+          const emails= document.getElementById('emails').value
+          if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(emails)==false){
+             messages.innerText ="Enter the correct email "
+              messages.style.display = "block";
+              return false;
+           }
+           alert('Welcome to frame-hunt');
+           return true;
+        }
+        </script>
 </body>
 </html>

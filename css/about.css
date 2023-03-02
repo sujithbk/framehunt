@@ -1,4 +1,4 @@
-
+/* 
 .bd-placeholder-img {
   font-size: 1.125rem;
   text-anchor: middle;
@@ -48,7 +48,7 @@
   text-align: center;
   white-space: nowrap;
   -webkit-overflow-scrolling: touch;
-}
+*/
 body{
     background: linear-gradient(rgb(234, 234, 122),rgb(199, 180, 69));
-}
+} 
