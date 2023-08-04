@@ -1,8 +1,8 @@
 .album{
-    background: linear-gradient(125.31deg,#f2015b.0%,#0a0a0a 47.92%,#282828 100%);
+    background: linear-gradient(#b4b1b2,#949092, #8a8b94);
 }
 .card-body{
-    background: linear-gradient(#f2015b, #747ba4);
+    background: linear-gradient(#ede9eb, #747ba4);
 }
 
 
