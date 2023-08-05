@@ -5,5 +5,74 @@
     background: linear-gradient(#ede9eb, #747ba4);
 }
 
+ /* animation */
 
+#star{
+    position: absolute;
+    position: absolute;
+    top: 51%;
+    left: 17%;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    width: min(5vw, 4.5vmin);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background-color: #ccc;
+    border: 0.15rem solid black;
+    overflow: hidden;
+    animation: rotate 20s linear infinite;
+    transform-origin: 0% 0%;
+  }
+  
+  @keyframes rotate {
+    to {
+      rotate: 1turn;
+    }
+  }
 
+  #star::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(
+        closest-side circle at 50% 25%,
+        rgb(18, 18, 18),
+        rgb(11, 10, 10) 25%,
+        white 25.1%,
+        white 100%,
+        transparent
+      ),
+      radial-gradient(
+        closest-side circle at 50% 75%,
+        white,
+        white 25%,
+        rgb(13, 13, 13) 25.1%,
+        rgb(9, 9, 9) 100%,
+        transparent
+      );
+  }
+  
+  #star::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(
+      to right,
+      rgb(6, 6, 6),
+      rgb(15, 14, 14) 50%,
+      white 50.1%,
+      white
+    );
+    z-index: -1;
+  }
+  
+
+  /* animation-end */
+
+  .navbar-brand a :hover{
+    color: #2e4bf0;
+  }
+#signupbt{
+    text-decoration: underline;
+    
+}
