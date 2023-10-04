@@ -1,79 +1,89 @@
-const express = require("express")
-const app = express()
-const dotenv = require('dotenv')
-const path = require('path')
-const cookieParser = require("cookie-parser")
-const jwt = require('jsonwebtoken')
+const express = require("express");
+const app = express();
+const dotenv = require('dotenv');
+const path = require('path');
+const cookieParser = require("cookie-parser");
+const jwt = require('jsonwebtoken');
+const mongoose = require('mongoose');
 
-
-
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, '../Frontend')));
 app.use(cookieParser());
-app.use(express.urlencoded({extended:true}));
-app.use(express.static(path.join(__dirname, '../Frontend')))
-app.use(express.static('../Frontend/css'))
 
+dotenv.config({ path: './config/config.env' });
 
-dotenv.config({path:'./config/config.env'});
+mongoose.connect(process.env.Mongoodb_Url , { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('Database connected'))
+  .catch(error => console.log(`Database NOT-Connected ${error.message}`));
 
+const postSchema = new mongoose.Schema({
+  username: String,
+  email: String,
+  password: String
+});
 
-
-const users = []
-   
-
-
+const Post = mongoose.model('posts', postSchema);
 
 app.get('/', (req, res) => {
-    res.sendFile( path.join(__dirname,'../Frontend/signup.html'));
+  res.sendFile(path.join(__dirname, '../Frontend/signup.html'));
 });
 
-app.post('/',  (req, res) => {
-    // console.log(req.body," true" , req);
-    const { username , email, password } = req.body;
-    console.log(username, email, password);
-        const newuser = {
-            username : req.body.username,
-            password : req.body.password,
-            email : req.body.email,
-        }
-        users.push(newuser);
-        console.log(users);
-        res.status(200).redirect('/login.html'); 
+app.post('/signup', async (req, res) => {
+  const { username, email, password } = req.body;
+
+  try {
+    const newPost = new Post({
+      username: username,
+      email: email,
+      password: password
+    });
+
+    await newPost.save();
+ 
+    console.log('User registered:', newPost);
+    res.status(200).redirect('/login.html');
+  } catch (error) {
+    console.error('Error registering user:', error);
+    res.status(500).send('Error during registration');
+  }
 });
 
-app.get('/login.html', (req, res ) => {
-    res.sendFile(path.join(__dirname, '../Frontend/login.html'));
-} );
+app.get('/login.html', (req, res) => {
+  res.sendFile(path.join(__dirname, '../Frontend/login.html'));
+});
 
-app.post('/login', (req, res) => {
-    console.log(req.body);
-    const loginuser = {
-        username : req.body.username,
-        password : req.body.password,
-    }
+app.post('/login', async (req, res) => {
+  const loginuser = {
+    username: req.body.username,
+    password: req.body.password,
+  };
 
-    const user = users.find((data) => loginuser.username === data.username  && loginuser.password  === data.password );
-    if(user) {
-        console.log('VALID USER');
-        const data = {
-            username:loginuser.username,
-            date:Date(),
-        };
+  try {
+    const user = await Post.findOne(loginuser);
 
-        const token = jwt.sign(data, process.env.JWT_SECRET_KEY, ({expiresIn:'1h'}));
-        // console.log(token);
-        res.cookie('token', token).redirect('index.html');
+    if (user) {
+      console.log('VALID USER');
+      const data = {
+        username: loginuser.username,
+        date: Date(),
+      };
+
+      const token = jwt.sign(data, process.env.JWT_SECRET_KEY, { expiresIn: '1h' });
+      res.cookie('token', token).redirect('index.html');
     } else {
-        res.sendFile(path.join(__dirname,'../Frontend/notAUser.html'))
-        console.log('INVALID USER');
+      res.sendFile(path.join(__dirname, '../Frontend/notAUser.html'));
+      console.log('INVALID USER');
     }
-})
-app.get('/index.html', (req, res) => {
-    res.redirect(path.join(__dirname,'../Frontend/index.html'));
+  } catch (error) {
+    console.error('Error during login', error);
+    res.status(500).send('Error during login');
+  }
 });
 
+app.get('/index.html', (req, res) => {
+  res.redirect(path.join(__dirname, '../Frontend/index.html'));
+});
 
-
-
-app.listen(process.env.PORT,()=>{
-    console.log(`sever is running${process.env.PORT}`)
+app.listen(process.env.PORT, () => {
+  console.log(`Server is running on port ${process.env.PORT}`);
 });

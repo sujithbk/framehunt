@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIGNUP/FRAME-HUNT</title>
+  <link rel="stylesheet" href="css/signup.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" 
+  integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+</head>
+<body>
+  <div>
+  <nav>
+    <div class="navbar fixed-top navbar-expand-md ">
+        <a href="index.html" class="navbar-brand fs-3 ms-3 text-black">FRAME-HUNT</a>
+        <button class="navbar-toggler me-3 text-black " type="button" data-bs-toggle="collapse" data-bs-target="#btna"><i class="bi bi-menu-button-wide-fill"></i></i></button>
+       <div class="collapse navbar-collapse " id="btna">
+           <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                  <a href="#" id="textsign" class="nav-link mx-3  fs-5">SIGN-UP</a>   
+              </li>
+           </ul>
+        </div>
+     </div>
+   </nav>
+   <br>
+   <br>
+   <br>
+   <div class="container bg-body-secondary  border rounded-start">
+    <br>
+    <div class="py-5 text-center">
+        <h1 id="texth1">SIGN-UP</h1>
+    </div>
+
+    <div class="row g-5">
+      <form class="m-2" action="/signup" method="post" onsubmit=" return handleSubmit()">
+        <div id="message" class="alert alert-danger text-center" style="display: none;">ENTER YOUR NAME</div>
+     <div class="row g-3">
+      <div class="col-sm-6 col-12">
+      <label  for="name" class="form-label">First Name</label>
+      <input type="text" name="Username" class="form-control" id="name" aria-describedby="emailHelp">
+    </div>     
+    <div class="col-sm-6">
+      <label for="email" class="form-label">Email address</label>
+      <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp">
+    </div>
+    <div class="col-sm-6">
+      <label for="password" class="form-label">Password</label>
+      <input type="text" name="password" class="form-control" id="password">
+    </div>
+    <div class="col-sm-6 col-12">
+      <label  for="lname" class="form-label">Conform Password</label>
+      <input type="text" name="lname" class="form-control" id="lname" >
+    </div>
+    <div class="col-sm-6 col-12">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="invalidCheck" >
+        <label class="form-check-label" for="invalidCheck">
+          Agree to terms and conditions
+        </label>
+        <div class="invalid-feedback">
+          You must agree before submitting.
+        </div>
+      </div>
+    </div>
+    <div class="d-grid gap-2 col-6 mx-auto">
+      <button class="btn btn-outline-success btn-lg" type="submit">Submit</button>
+  </div>
+    <p>Already have an account <a id="login1" href="login.html">Login</a></p>
+  </div>
+  </form>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" 
+integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+
+      <script type="text/javascript">
+        function handleSubmit(){
+         const message = document.getElementById('message')
+         const name= document.getElementById('name').value
+         const email = document.getElementById('email').value
+         const password= document.getElementById('password').value
+         const lname= document.getElementById('lname').value
+         const check = document.getElementById('invalidCheck').value
+       
+         message.style.display="none"
+         
+           if(name.length == 0){
+              message.innerText ="Enter your name"
+              message.style.display = "block";
+              return false;
+           }
+
+           if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)==false){
+             message.innerText ="Enter the corect email "
+              message.style.display = "block";
+              return false;
+           }
+           if(password.length < 5){
+             message.innerText ="Username  must be more than 5 word"
+              message.style.display = "block";
+              return false;
+           }
+           if(lname.value == password){
+              message.innerText ="Password Not Matching"
+              message.style.display = "block";
+              return false;
+           }
+          //  alert('Welcome to frame-hunt');
+          
+          ///for calling api in html
+
+        let apiUrl = '/';
+        fetch(apiUrl, {Method: 'POST',
+        Body:{
+          username,email,password 
+        }
+
+        }).then(response => {
+            return response.json();
+          }).then(data => {
+            // Work with JSON data here
+            console.log(data);
+          }).catch(err => {
+            // Do something for an error here
+          });
+        }
+     
+        </script>
+ </div>
+</body>
+</html>
+        
